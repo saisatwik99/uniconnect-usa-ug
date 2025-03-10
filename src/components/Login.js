@@ -7,14 +7,20 @@ const Login = ({ onLogin }) => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
-  // Hardcoded credentials as specified
-  const validUsername = 'Uniconnect';
-  const validPassword = 'uniconnect';
+  const validCredentials = [
+    { username: 'Uniconnect', password: 'Uniconnect' },
+    
+    
+  ];
 
   const handleSubmit = (e) => {
     e.preventDefault();
     
-    if (username === validUsername && password === validPassword) {
+    const isValid = validCredentials.some(
+      (cred) => cred.username === username && cred.password === password
+    );
+
+    if (isValid) {
       onLogin();
     } else {
       setError('Invalid username or password');
